@@ -2,9 +2,13 @@ import os
 import sys
 import requests
 from gtts import gTTS
+from dotenv import load_dotenv 
+load_dotenv()
 
 # Get your API key from Google AI Studio.
-API_KEY = "AIzaSyB2T32smEr1LSUHEVyH9f-LKr9HUnzk7zU"
+API_KEY = os.getenv("API_KEY")
+if not API_KEY:
+    raise ValueError("API_KEY not found. Please set it as an environment variable or in a .env file.")
 API_URL_TEXT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={API_KEY}"
 
 # List of supported languages for the user to choose from

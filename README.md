@@ -18,53 +18,53 @@ Getting Started
 
 Prerequisites:
 
-Python 3.x
-
-A microphone connected to your computer
+  Python 3.x
+  
+  A microphone connected to your computer
 
 Installation:
 
-Clone the repository:
+  Clone the repository:
+  
+    git clone https://github.com/your-username/voice_translation.git
+    cd your-repo-name
 
-git clone https://github.com/your-username/voice_translation.git
-cd your-repo-name
-
-Install the required libraries:
-
-pip install SpeechRecognition
-pip install translate
-pip install gTTS
+  Install the required libraries:
+  
+    pip install SpeechRecognition
+    pip install translate
+    pip install gTTS
 
 Usage
-Run the script from your terminal:
+  Run the script from your terminal:
 
-python your_script_name.py
-Follow the on-screen prompts to select your source and target languages and begin speaking.
+  python your_script_name.py
+  Follow the on-screen prompts to select your source and target languages and begin speaking.
 
 Supported Languages
 The application supports the following languages:
 
-English (en)
-
-Spanish (es)
-
-French (fr)
-
-German (de)
-
-Japanese (ja)
-
-Hindi (hi)
-
-Russian (ru)
-
-Italian (it)
-
-Portuguese (pt)
-
-Korean (ko)
-
-Chinese (Mandarin) (zh-CN)
-
-Arabic (ar)
-
+  English (en)
+  
+  Spanish (es)
+  
+  French (fr)
+  
+  German (de)
+  
+  Japanese (ja)
+  
+  Hindi (hi)
+  
+  Russian (ru)
+  
+  Italian (it)
+  
+  Portuguese (pt)
+  
+  Korean (ko)
+  
+  Chinese (Mandarin) (zh-CN)
+  
+  Arabic (ar)
+  

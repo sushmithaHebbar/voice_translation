@@ -15,21 +15,26 @@ The application translates recognized text into a target language using the tran
 This feature will enhance the translator to handle a conversation in both directions. The application will listen for speech in both the source and target languages, translating and speaking them back in real-time. This is ideal for two-person conversations where each person speaks a different language.
 
 Getting Started
-Prerequisites
+
+Prerequisites:
+
 Python 3.x
 
 A microphone connected to your computer
 
-Installation
+Installation:
+
 Clone the repository:
 
 git clone https://github.com/your-username/voice_translation.git
 cd your-repo-name
+
 Install the required libraries:
 
 pip install SpeechRecognition
 pip install translate
 pip install gTTS
+
 Usage
 Run the script from your terminal:
 

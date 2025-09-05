@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation History</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .entry { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .entry:last-child { border-bottom: none; }
+        .timestamp { color: #888; font-size: 0.9em; }
+        .content { margin-top: 5px; }
+        .audio-player { margin-top: 10px; }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        .navbar button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navbar button.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button id="normal-history-btn" class="active">Normal History</button>
+        <button id="two-way-btn">Two-Way Communication</button>
+    </div>
+    <div class="container">
+        <h1>🗣️ Translation History</h1>
+        <div id="history-content">Loading history...</div>
+    </div>
+
+    <script>
+        let allHistoryData = [];
+
+        function renderHistory(filterType) {
+            const historyContainer = document.getElementById('history-content');
+            historyContainer.innerHTML = '';
+            
+            const filteredEntries = allHistoryData.filter(entry => {
+                if (filterType === 'two-way') {
+                    return entry.type === 'Two-Way Communication';
+                } else if (filterType === 'normal') {
+                    return entry.type !== 'Two-Way Communication';
+                }
+                return true;
+            });
+
+            if (filteredEntries.length === 0) {
+                historyContainer.textContent = "No translation history found for this type.";
+                return;
+            }
+
+            filteredEntries.forEach(entry => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('entry');
+                entryDiv.innerHTML = `
+                    <div class="timestamp"><strong>Type:</strong> ${entry.type} - ${entry.timestamp}</div>
+                    <div class="content"><strong>Original:</strong> ${entry.originalText}</div>
+                    <div class="content"><strong>Translated:</strong> ${entry.translatedText}</div>
+                    ${entry.audioFile ? `<div class="audio-player"><audio controls src="/static/audio/${entry.audioFile}"></audio></div>` : ''}
+                `;
+                historyContainer.appendChild(entryDiv);
+            });
+        }
+
+        function setActiveButton(activeBtnId) {
+            document.querySelectorAll('.navbar button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(activeBtnId).classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/history')
+                .then(response => response.text())
+                .then(data => {
+                    if (!data) {
+                        document.getElementById('history-content').textContent = "No translation history yet.";
+                        return;
+                    }
+                    const entries = data.trim().split('------------------------------------------').filter(entry => entry.trim() !== '');
+                    allHistoryData = entries.map(entry => {
+                        const lines = entry.trim().split('\n');
+                        const timestamp = lines[0].match(/\[(.*?)\]/)[1];
+                        const type = lines[0].match(/Type: (.*)/)[1];
+                        const originalText = lines[1].replace('Original Text: ', '');
+                        const translatedText = lines[2].replace('Translated Text: ', '');
+                        const audioFileMatch = entry.match(/Audio File: (.*)/);
+                        const audioFile = audioFileMatch ? audioFileMatch[1].trim() : null;
+                        
+                        return { timestamp, type, originalText, translatedText, audioFile };
+                    });
+                    
+                    renderHistory('normal');
+                })
+                .catch(error => {
+                    document.getElementById('history-content').textContent = `Error loading history: ${error.message}`;
+                });
+
+            document.getElementById('two-way-btn').addEventListener('click', () => {
+                renderHistory('two-way');
+                setActiveButton('two-way-btn');
+            });
+
+            document.getElementById('normal-history-btn').addEventListener('click', () => {
+                renderHistory('normal');
+                setActiveButton('normal-history-btn');
+            });
+        });
+    </script>
+</body>
+</html>

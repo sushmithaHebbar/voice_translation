@@ -1,0 +1,73 @@
+[2025-09-05 13:34:21] Type: Text-to-Speech
+Original Text: Hii How are you .My name is sushmitha i am from mangaluru.my dad is teacher and my mother is housewife but she completed her MA course.
+Translated Text: नमस्ते! आप कैसे हैं? मेरा नाम सुष्मिता है और मैं मंगलुरु से हूँ। मेरे पिताजी एक शिक्षक हैं और मेरी माँ गृहिणी हैं, लेकिन उन्होंने अपना एम.ए. का कोर्स पूरा कर लिया है।
+Languages: English -> Hindi
+------------------------------------------
+[2025-09-05 13:37:51] Type: Speech-to-Speech
+Original Text: Mangaluru
+Translated Text: ಮಂಗಳೂರು
+Languages: English -> Kannada
+------------------------------------------
+[2025-09-05 18:56:10] Type: Speech-to-Speech
+Original Text: management in Mangalore
+Translated Text: ಮಂಗಳೂರಿನಲ್ಲಿ ನಿರ್ವಹಣೆ
+Languages: English -> Kannada
+Audio File: translated_2f05be5c-b896-4349-8bf2-2cd2c28b4af0.mp3
+------------------------------------------
+[2025-09-05 18:56:44] Type: Speech-to-Speech
+Original Text: hello my name is
+Translated Text: हैलो मेरा नाम जेफ है
+Languages: English -> Hindi
+Audio File: translated_8bc59a9c-496e-4bba-8382-142501066edf.mp3
+------------------------------------------
+[2025-09-05 18:57:12] Type: Speech-to-Speech
+Original Text: hello my name is
+Translated Text: Hello, my name is ______. 
+Languages: English -> Kannada
+Audio File: translated_f0c4d7c6-73d6-4b5c-b8c9-5422e2baba80.mp3
+------------------------------------------
+[2025-09-05 18:58:28] Type: Speech-to-Speech
+Original Text: ಸುಶ್ಮಿತ ನಾನು ಮಂಗಳೂರಿಗೆ
+Translated Text: सुष्मिता आई एम मैंगलोर
+Languages: Kannada -> Hindi
+Audio File: translated_92faf085-21ef-401f-bfa8-04abc73515d8.mp3
+------------------------------------------
+[2025-09-05 19:10:46] Type: Text-to-Speech
+Original Text: Hii How are you .My name is sushmitha i am from mangaluru.my dad is teacher and my mother is housewife but she completed her MA course.
+Translated Text: ಹಾಯ್, ಹೇಗಿದ್ದೀರಾ? ನನ್ನ ಹೆಸರು ಸುಶ್ಮಿತಾ, ನಾನು ಮಂಗಳೂರಿನವಳು. ನನ್ನ ಅಪ್ಪ ಶಿಕ್ಷಕರು ಮತ್ತು ನನ್ನ ಅಮ್ಮ ಗೃಹಿಣಿ, ಆದರೆ ಅವರು ಎಂ.ಎ. ಪದವಿ ಮಾಡಿದ್ದಾರೆ/ಪೂರ್ಣಗೊಳಿಸಿದ್ದಾರೆ.
+
+**More naturally:**
+ಹಾಯ್, ಹೇಗಿದ್ದೀರಾ? ನನ್ನ ಹೆಸರು ಸುಶ್ಮಿತಾ, ನಾನು ಮಂಗಳೂರಿನಿಂದ ಬಂದಿದ್ದೇನೆ. ನನ್ನ ಅಪ್ಪ ಶಿಕ್ಷಕರು ಮತ್ತು ನನ್ನ ಅಮ್ಮ ಗೃಹಿಣಿ, ಆದರೆ ಅವರು ಎಂ.ಎ. ಮುಗಿಸಿದ್ದಾರೆ.
+Languages: English -> Kannada
+Audio File: translated_9aa47908-3f82-4914-bf0a-ad4fa1cdb664.mp3
+------------------------------------------
+[2025-09-05 19:13:12] Type: Two-Way Communication
+Original Text: hi how are you
+Translated Text: ನನ್ನ ಹೆಸರು ರಾಕ್
+Languages: English -> Kannada
+Audio File: translated_20bc162f-f707-4bec-b6e0-d4766656bea7.mp3
+------------------------------------------
+[2025-09-05 19:13:27] Type: Two-Way Communication
+Original Text: ನನ್ನ ಹೆಸರು ಸುಷ್ಮಿತ್ ನಾನು ಚೆನ್ನಾಗಿದ್ದೇನೆ
+Translated Text: My name is Sushmith and I am fine
+Languages: Kannada -> English
+Audio File: translated_91e2122e-ef53-4404-9de5-7719c98ad3a1.mp3
+------------------------------------------
+[2025-09-05 19:13:42] Type: Two-Way Communication
+Original Text: in which language are you speaking
+Translated Text: ನೀವು ಯಾವ ಭಾಷೆಯಲ್ಲಿ ಮಾತನಾಡುತ್ತಿದ್ದೀರಿ
+Languages: English -> Kannada
+Audio File: translated_24687d75-7e72-4dd6-a011-d05b8a93f3be.mp3
+------------------------------------------
+[2025-09-05 19:13:59] Type: Two-Way Communication
+Original Text: ನಾನು ಕನ್ನಡ ಭಾಷೆಯಲ್ಲಿ ಮಾತನಾಡುತ್ತಿದ್ದೇನೆ ಮತ್ತು ನನ್ನ ಅಮ್ಮ ಇಂಗ್ಲಿಷ್ ಭಾಷೆಯಲ್ಲಿ ಮಾತನಾಡುತ್ತಿದ್ದಾರೆ
+Translated Text: I am speaking in Kannada and my mother is speaking in English
+Languages: Kannada -> English
+Audio File: translated_55bfdc11-60d4-40d1-8966-29d79cbc56a3.mp3
+------------------------------------------
+[2025-09-05 19:14:21] Type: Two-Way Communication
+Original Text: can you explore more things about English language
+Translated Text: ನೀವು ಇಂಗ್ಲಿಷ್ ಭಾಷೆಯ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿಷಯಗಳನ್ನು ಅನ್ವೇಷಿಸಬಹುದೇ?
+Languages: English -> Kannada
+Audio File: translated_53aa84c1-8f11-45b4-ab8b-c69f785953d3.mp3
+------------------------------------------

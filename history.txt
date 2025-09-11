@@ -71,3 +71,102 @@ Translated Text: ನೀವು ಇಂಗ್ಲಿಷ್ ಭಾಷೆಯ ಬಗ್
 Languages: English -> Kannada
 Audio File: translated_53aa84c1-8f11-45b4-ab8b-c69f785953d3.mp3
 ------------------------------------------
+[2025-09-10 09:23:35] Type: Identity Announcement
+Original Text: Sushmitha
+Translated Text: This is Sushmitha.
+Languages: en -> en
+------------------------------------------
+[2025-09-10 09:24:43] Type: Text Translation
+Original Text: Sushmitha Hello
+Translated Text: **سوشميتا مرحباً**
+
+(Sushmitha Marhaban)
+Languages: Kannada -> Arabic
+------------------------------------------
+[2025-09-10 09:28:24] Type: Identity Announcement
+Original Text: Sushmitha
+Translated Text: This is Sushmitha.
+Languages: en -> en
+------------------------------------------
+[2025-09-10 09:30:34] Type: Identity Announcement
+Original Text: Sushmitha
+Translated Text: This is Sushmitha.
+Languages: kn -> kn
+------------------------------------------
+[2025-09-10 09:36:21] Type: Text Translation
+Original Text: Sushmitha Hello
+Translated Text: **سوشميتا مرحباً**
+
+*(Transliteration: Sushmita Marhabaan)*
+Languages: Kannada -> Arabic
+------------------------------------------
+[2025-09-10 09:37:09] Type: Text Translation
+Original Text: Sushmitha Hello hii how are you?
+Translated Text: Here's the translation from English (as the original is already in English) to Hindi:
+
+**सुष्मिता:** हेलो, आप कैसे हैं?
+
+**(Sushmitha: Hello, aap kaise hain?)**
+
+*   **सुष्मिता (Sushmitha):** This is the name transliterated into Hindi.
+*   **हेलो (Hello):** This is a direct borrowing from English, commonly used in Hindi. You could also use "नमस्ते (Namaste)" for a more traditional greeting.
+*   **आप कैसे हैं? (aap kaise hain?):** This is the polite way to ask "How are you?"
+    *   If Sushmitha is asking a female friend, she might also say: "आप कैसी हैं? (aap kaisi hain?)"
+    *   If it's a very close friend and informal, she might say: "तुम कैसे हो? (tum kaise ho?)" (if addressing a male) or "तुम कैसी हो? (tum kaisi ho?)" (if addressing a female).
+
+The most general and polite translation is: **सुष्मिता: हेलो, आप कैसे हैं?**
+Languages: Kannada -> Hindi
+------------------------------------------
+[2025-09-10 09:37:51] Type: Text Translation
+Original Text: Sushmitha Hello how are you?
+Translated Text: **Sushmitha: مرحباً، كيف حالكَ؟**
+
+*(Transliteration: Sushmitha: Marḥaban, kayfa ḥāluka?)*
+
+*Note: "كيف حالكَ؟" is used when addressing a male. If addressing a female, it would be "كيف حالكِ؟" (kayfa ḥāluki?).*
+Languages: Kannada -> Arabic
+------------------------------------------
+[2025-09-10 09:38:30] Type: Identity Announcement
+Original Text: Sushmitha
+Translated Text: This is Sushmitha.
+Languages: de -> de
+------------------------------------------
+[2025-09-10 09:40:09] Type: Identity Announcement
+Original Text: Sushmitha
+Translated Text: This is Sushmitha.
+Languages: hi -> hi
+------------------------------------------
+[2025-09-10 09:55:54] Type: Identity Announcement
+Original Text: Sushmitha
+Translated Text: This is Sushmitha.
+Languages: hi -> hi
+------------------------------------------
+[2025-09-10 10:11:59] Type: Two-Way Communication
+Original Text: hello hay
+Translated Text: ಹಲೋ ಹೇ
+Languages: English -> Kannada
+Audio File: translated_90913768-6468-41ba-ae7b-5f41a377ce56.mp3
+------------------------------------------
+[2025-09-10 10:12:27] Type: Two-Way Communication
+Original Text: ಎಕ್ಸಿಟ್
+Translated Text: Exit
+Languages: Kannada -> English
+Audio File: translated_9cacd421-2948-4d5d-9059-0413fb379596.mp3
+------------------------------------------
+[2025-09-10 10:13:20] Type: Two-Way Communication
+Original Text: exit
+Translated Text: ನಿರ್ಗಮಿಸಿ (Exit)
+Languages: English -> Kannada
+Audio File: translated_36fc74a8-9a55-4f9a-a8ac-b064d26fa19e.mp3
+------------------------------------------
+[2025-09-11 14:19:28] Type: Text Translation
+Original Text: Hii My name is sushmitha . I am from mangaluru .
+Translated Text: مرحباً، اسمي سوشميتا. أنا من مانغالورو.
+Languages: English -> Arabic
+------------------------------------------
+[2025-09-11 14:41:22] Type: Text Translation
+Original Text: Hii My name is sushmitha . I am from mangaluru .
+Translated Text: नमस्ते! मेरा नाम सुष्मिता है। मैं मंगलुरु से हूँ।
+Languages: English -> Hindi
+Audio File: translated_775f5eaa-831d-475a-b25e-86e625d7b481.mp3
+------------------------------------------

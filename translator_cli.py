@@ -1,131 +1,3 @@
-#Text to speech code
-
-# import os
-# import sys
-# import requests
-# from gtts import gTTS
-# from dotenv import load_dotenv 
-# load_dotenv()
-
-# # Get your API key from Google AI Studio.
-# API_KEY = os.getenv("API_KEY")
-# if not API_KEY:
-#     raise ValueError("API_KEY not found. Please set it as an environment variable or in a .env file.")
-# API_URL_TEXT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={API_KEY}"
-
-# # List of supported languages for the user to choose from
-# SUPPORTED_LANGUAGES = [
-#     {"code": "en", "name": "English"},
-#     {"code": "kn", "name": "Kannada"},
-#     {"code": "es", "name": "Spanish"},
-#     {"code": "fr", "name": "French"},
-#     {"code": "de", "name": "German"},
-#     {"code": "ja", "name": "Japanese"},
-#     {"code": "zh", "name": "Chinese (Simplified)"},
-#     {"code": "ru", "name": "Russian"},
-#     {"code": "it", "name": "Italian"},
-#     {"code": "pt", "name": "Portuguese"},
-#     {"code": "ko", "name": "Korean"},
-#     {"code": "ar", "name": "Arabic"},
-#     {"code": "hi", "name": "Hindi"},
-#     {"code": "tr", "name": "Turkish"},
-# ]
-
-# def translate_text(text, source_lang, target_lang):
-#     """
-#     Translates text from a source language to a target language using the Gemini API.
-#     """
-#     print("\nTranslating...")
-#     prompt = f"Translate the following text from {source_lang} to {target_lang}: \"{text}\""
-
-#     payload = {
-#         "contents": [{"parts": [{"text": prompt}]}]
-#     }
-
-#     try:
-#         response = requests.post(API_URL_TEXT, json=payload)
-#         response.raise_for_status()
-#         result = response.json()
-#         translated_text = result['candidates'][0]['content']['parts'][0]['text']
-#         return translated_text
-#     except requests.exceptions.RequestException as e:
-#         return f"Error during translation: {e}"
-#     except (KeyError, IndexError) as e:
-#         return f"Unexpected API response format: {e}"
-
-# def text_to_speech_gtts(text, lang):
-#     """
-#     Converts text to speech using gTTS and plays the audio file.
-#     """
-#     print("Generating and playing audio...")
-#     try:
-#         # Create a gTTS object with the translated text and target language
-#         tts = gTTS(text=text, lang=lang)
-        
-#         # Define the temporary file path
-#         audio_file = "translated_audio.mp3"
-        
-#         # Save the audio file
-#         tts.save(audio_file)
-#         print(f"Audio file created: {audio_file}")
-        
-#         # Play the audio file using the OS's default player (Windows-specific)
-#         os.system(f"start {audio_file}")
-        
-#     except Exception as e:
-#         print(f"Error during audio generation or playback: {e}")
-#     finally:
-#         # It's better to manually delete the file after playback is complete
-#         # to ensure it's not still in use by the OS.
-#         # For a simple script, leaving it for manual deletion is fine.
-#         pass
-
-# def main():
-#     """Main function to handle command-line arguments and run the program."""
-#     if len(sys.argv) < 2:
-#         print("Usage: python translator_cli.py \"<text_to_translate>\"")
-#         print("Example: python translator_cli.py \"Hello, how are you?\"")
-#         sys.exit(1)
-
-#     input_text = sys.argv[1]
-    
-#     # Print the available languages
-#     print("Available Languages:")
-#     for i, lang in enumerate(SUPPORTED_LANGUAGES):
-#         print(f"  {i+1}. {lang['name']} ({lang['code']})")
-
-#     # Get user choice for source and target languages
-#     try:
-#         source_index = int(input("\nEnter the number for your source language: ")) - 1
-#         target_index = int(input("Enter the number for your target language: ")) - 1
-        
-#         if not (0 <= source_index < len(SUPPORTED_LANGUAGES) and 0 <= target_index < len(SUPPORTED_LANGUAGES)):
-#             print("Invalid language numbers. Please choose from the list.")
-#             sys.exit(1)
-
-#         source_lang = SUPPORTED_LANGUAGES[source_index]['code']
-#         target_lang = SUPPORTED_LANGUAGES[target_index]['code']
-
-#     except ValueError:
-#         print("Invalid input. Please enter a number.")
-#         sys.exit(1)
-    
-#     translated_text = translate_text(input_text, source_lang, target_lang)
-#     print("Translated Text:", translated_text)
-    
-#     # Play the audio only if a valid translation was received
-#     if not translated_text.startswith("Error"):
-#         text_to_speech_gtts(translated_text, target_lang)
-
-# if __name__ == "__main__":
-#     main()
-
-
-
-#Text to speech code
-
-#Text to speech code
-
 import os
 import sys
 import requests
@@ -134,15 +6,17 @@ from dotenv import load_dotenv
 from datetime import datetime
 import time
 import uuid
+
+# Load environment variables from a .env file.
 load_dotenv()
 
-# Get your API key from Google AI Studio.
+# Get your API key from environment variables.
 API_KEY = os.getenv("API_KEY")
 if not API_KEY:
     raise ValueError("API_KEY not found. Please set it as an environment variable or in a .env file.")
 API_URL_TEXT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={API_KEY}"
 
-# List of supported languages for the user to choose from
+# List of supported languages.
 SUPPORTED_LANGUAGES = {
     "en": "English",
     "kn": "Kannada",
@@ -150,7 +24,7 @@ SUPPORTED_LANGUAGES = {
     "fr": "French",
     "de": "German",
     "ja": "Japanese",
-    "zh": "Chinese (Simplified)",
+    "zh-CN": "Chinese (Simplified)",
     "ru": "Russian",
     "it": "Italian",
     "pt": "Portuguese",
@@ -160,48 +34,56 @@ SUPPORTED_LANGUAGES = {
     "tr": "Turkish",
 }
 
-def save_translation_to_file(original_text, translated_text, source_lang, target_lang, audio_filename):
-    """Saves a new translation record and audio filename to a local text file."""
+def save_to_history_file(record_type, original_text, translated_text, source_lang, target_lang, audio_filename=None):
+    """Saves a new translation or announcement record to a local history.txt file."""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     entry = (
-        f"[{timestamp}] Type: Text-to-Speech\n"
+        f"[{timestamp}] Type: {record_type}\n"
         f"Original Text: {original_text}\n"
         f"Translated Text: {translated_text}\n"
         f"Languages: {source_lang} -> {target_lang}\n"
-        f"Audio File: {audio_filename}\n" # New line to store the audio filename
-        "------------------------------------------\n"
     )
+    if audio_filename:
+        entry += f"Audio File: {audio_filename}\n"
+    entry += "------------------------------------------\n"
+    
     with open("history.txt", "a", encoding="utf-8") as f:
         f.write(entry)
-    print("Translation history saved to history.txt.")
+    print("Record saved to history.txt.")
 
 def text_to_speech_gtts(text, lang):
     """
-    Converts text to speech, saves the audio file, and returns the filename.
+    Converts text to speech, saves the audio file in the static/audio directory, and plays it.
+    Returns the filename.
     """
     print("Generating and playing audio...")
     try:
         tts = gTTS(text=text, lang=lang)
-        # Create a unique filename for the audio file
-        audio_filename = f"translated_{uuid.uuid4()}.mp3"
-        audio_file_path = os.path.join("static", "audio", audio_filename)
-        tts.save(audio_file_path)
-        print(f"Audio file created: {audio_file_path}")
         
-        # Play the audio file (optional, for local use)
+        # Ensure the static/audio directory exists
+        audio_dir = os.path.join("static", "audio")
+        os.makedirs(audio_dir, exist_ok=True)
+
+        audio_filename = f"translated_{uuid.uuid4()}.mp3"
+        audio_file_path = os.path.join(audio_dir, audio_filename)
+        
+        tts.save(audio_file_path)
+        
+        # This will play the audio file on most systems.
         os.system(f"start {audio_file_path}")
+        print(f"Audio file created and played: {audio_file_path}")
         
         return audio_filename
     except Exception as e:
         print(f"Error during audio generation or playback: {e}")
         return None
 
-def translate_text(text, source_lang, target_lang):
+def translate_text(text, source_lang_code, target_lang_code):
     """
     Translates text from a source language to a target language using the Gemini API.
     """
     print("\nTranslating...")
-    prompt = f"Translate the following text from {source_lang} to {target_lang}: \"{text}\""
+    prompt = f"Translate the following text from {source_lang_code} to {target_lang_code}: \"{text}\""
 
     payload = {
         "contents": [{"parts": [{"text": prompt}]}]
@@ -218,18 +100,61 @@ def translate_text(text, source_lang, target_lang):
     except (KeyError, IndexError) as e:
         return f"Unexpected API response format: {e}"
 
+def announce_identity(person_name, lang):
+    """
+    Synthesizes and plays a voice message announcing a person's identity.
+    It also saves a record of the announcement to the history file.
+    The language is now determined by the user's input.
+    """
+    print(f"Announcing identity: {person_name} in {SUPPORTED_LANGUAGES[lang]}.")
+    text_to_announce = f"This is {person_name}."
+    
+    # Generate and play the audio.
+    audio_filename = text_to_speech_gtts(text_to_announce, lang)
+    
+    # Save the announcement to the history file.
+    save_to_history_file("Identity Announcement", person_name, text_to_announce, lang, lang, audio_filename)
+
 def main():
     """Main function to handle command-line arguments and run the program."""
     if len(sys.argv) < 2:
         print("Usage: python translator_cli.py \"<text_to_translate>\"")
-        print("Example: python translator_cli.py \"Hello, how are you?\"")
+        print("Or: python translator_cli.py --announce \"<person_name>\"")
         sys.exit(1)
 
+    # Check for the identity announcement flag.
+    if sys.argv[1] == "--announce":
+        if len(sys.argv) < 3:
+            print("Please provide a name to announce.")
+            sys.exit(1)
+        
+        person_name = sys.argv[2]
+        
+        # Prompt the user to select a language for the announcement.
+        print("\nAvailable Languages for Announcement:")
+        for i, lang_code in enumerate(SUPPORTED_LANGUAGES):
+            print(f"    {i+1}. {SUPPORTED_LANGUAGES[lang_code]} ({lang_code})")
+            
+        try:
+            target_index = int(input("\nEnter the number for your target language: ")) - 1
+            if not (0 <= target_index < len(SUPPORTED_LANGUAGES)):
+                print("Invalid language number. Please choose from the list.")
+                sys.exit(1)
+            target_lang_code = list(SUPPORTED_LANGUAGES.keys())[target_index]
+            
+            announce_identity(person_name, target_lang_code)
+            sys.exit(0)
+            
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            sys.exit(1)
+
+    # Handle standard text translation.
     input_text = sys.argv[1]
     
     print("Available Languages:")
     for i, lang_code in enumerate(SUPPORTED_LANGUAGES):
-        print(f"  {i+1}. {SUPPORTED_LANGUAGES[lang_code]} ({lang_code})")
+        print(f"    {i+1}. {SUPPORTED_LANGUAGES[lang_code]} ({lang_code})")
 
     try:
         source_index = int(input("\nEnter the number for your source language: ")) - 1
@@ -252,103 +177,94 @@ def main():
     print("Translated Text:", translated_text)
     
     if not translated_text.startswith("Error"):
+        # Use gTTS for text-to-speech.
         audio_filename = text_to_speech_gtts(translated_text, target_lang_code)
-        if audio_filename:
-            save_translation_to_file(input_text, translated_text, source_lang_name, target_lang_name, audio_filename)
+        # Save translation to history.
+        save_to_history_file("Text Translation", input_text, translated_text, source_lang_name, target_lang_name, audio_filename)
 
 if __name__ == "__main__":
     main()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # import os
 # import sys
 # import requests
-# import json
-# import subprocess
-# from pydub import AudioSegment, silence
-# import io
+# from gtts import gTTS
+# from dotenv import load_dotenv 
+# from datetime import datetime
+# import time
+# import uuid
 
-# # ---
-# # IMPORTANT: Before running, install the necessary libraries and audio player.
-# # 
-# # 1. Python libraries: `pip install requests pydub`
-# #
-# # 2. Audio Player: The script uses an external program to play audio.
-# #    - On Windows, install FFmpeg and make sure `ffplay` is in your system's PATH.
-# #      (Download FFmpeg from https://ffmpeg.org/download.html and add the bin directory to PATH)
-# #    - On macOS/Linux, install FFmpeg (`brew install ffmpeg`) or `aplay` (`sudo apt-get install alsa-utils`).
-# #      The script will automatically detect and try to use `ffplay`, `aplay`, or `vlc`.
-# #
-# # 3. Add your Gemini API Key below.
-# # ---
+# # Load environment variables from a .env file.
+# load_dotenv()
 
-# # Get your API key from Google AI Studio.
-# API_KEY = "AIzaSyB2T32smEr1LSUHEVyH9f-LKr9HUnzk7zU"
+# # Get your API key from environment variables.
+# API_KEY = os.getenv("API_KEY")
+# if not API_KEY:
+#     raise ValueError("API_KEY not found. Please set it as an environment variable or in a .env file.")
 # API_URL_TEXT = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={API_KEY}"
-# API_URL_AUDIO = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key={API_KEY}"
 
-# # List of supported languages for the user to choose from
-# SUPPORTED_LANGUAGES = [
-#     {"code": "en", "name": "English"},
-#     {"code": "es", "name": "Spanish"},
-#     {"code": "fr", "name": "French"},
-#     {"code": "de", "name": "German"},
-#     {"code": "ja", "name": "Japanese"},
-#     {"code": "zh", "name": "Chinese (Simplified)"},
-#     {"code": "ru", "name": "Russian"},
-#     {"code": "it", "name": "Italian"},
-#     {"code": "pt", "name": "Portuguese"},
-#     {"code": "ko", "name": "Korean"},
-#     {"code": "ar", "name": "Arabic"},
-#     {"code": "hi", "name": "Hindi"},
-#     {"code": "tr", "name": "Turkish"},
-# ]
+# # List of supported languages.
+# SUPPORTED_LANGUAGES = {
+#     "en": "English",
+#     "kn": "Kannada",
+#     "es": "Spanish",
+#     "fr": "French",
+#     "de": "German",
+#     "ja": "Japanese",
+#     "zh-CN": "Chinese (Simplified)",
+#     "ru": "Russian",
+#     "it": "Italian",
+#     "pt": "Portuguese",
+#     "ko": "Korean",
+#     "ar": "Arabic",
+#     "hi": "Hindi",
+#     "tr": "Turkish",
+# }
 
-# def find_audio_player():
+# def save_to_history_file(record_type, original_text, translated_text, source_lang, target_lang):
+#     """Saves a new translation or announcement record to a local history.txt file."""
+#     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#     entry = (
+#         f"[{timestamp}] Type: {record_type}\n"
+#         f"Original Text: {original_text}\n"
+#         f"Translated Text: {translated_text}\n"
+#         f"Languages: {source_lang} -> {target_lang}\n"
+#         "------------------------------------------\n"
+#     )
+#     with open("history.txt", "a", encoding="utf-8") as f:
+#         f.write(entry)
+#     print("Record saved to history.txt.")
+
+# def text_to_speech_gtts(text, lang):
 #     """
-#     Finds a suitable audio player available on the system, prioritizing VLC.
+#     Converts text to speech, saves the audio file in the static/audio directory, and plays it.
 #     """
-#     # Hardcoded path for VLC on a typical Windows installation
-#     vlc_path_windows = "C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"
-#     if os.path.exists(vlc_path_windows):
-#         return vlc_path_windows
+#     print("Generating and playing audio...")
+#     try:
+#         tts = gTTS(text=text, lang=lang)
+        
+#         # Ensure the static/audio directory exists
+#         audio_dir = os.path.join("static", "audio")
+#         os.makedirs(audio_dir, exist_ok=True)
 
-#     # The original logic for other players
-#     for player in ['vlc', 'ffplay', 'aplay']:
-#         if os.system(f'command -v {player} >/dev/null 2>&1') == 0:
-#             return player
-#     return None
+#         audio_filename = os.path.join(audio_dir, f"audio_{uuid.uuid4()}.mp3")
+        
+#         tts.save(audio_filename)
+        
+#         # This will play the audio file on most systems.
+#         os.system(f"start {audio_filename}")
+#         print(f"Audio file created and played: {audio_filename}")
+        
+#     except Exception as e:
+#         print(f"Error during audio generation or playback: {e}")
 
-# def translate_text(text, source_lang, target_lang):
+# def translate_text(text, source_lang_code, target_lang_code):
 #     """
 #     Translates text from a source language to a target language using the Gemini API.
-    
-#     Args:
-#         text (str): The text to translate.
-#         source_lang (str): The source language code (e.g., 'en').
-#         target_lang (str): The target language code (e.g., 'es').
-        
-#     Returns:
-#         str: The translated text or an error message.
 #     """
 #     print("\nTranslating...")
-#     prompt = f"Translate the following text from {source_lang} to {target_lang}: \"{text}\""
+#     prompt = f"Translate the following text from {source_lang_code} to {target_lang_code}: \"{text}\""
 
 #     payload = {
 #         "contents": [{"parts": [{"text": prompt}]}]
@@ -356,7 +272,7 @@ if __name__ == "__main__":
 
 #     try:
 #         response = requests.post(API_URL_TEXT, json=payload)
-#         response.raise_for_status()  # Raises an HTTPError for bad responses
+#         response.raise_for_status()
 #         result = response.json()
 #         translated_text = result['candidates'][0]['content']['parts'][0]['text']
 #         return translated_text
@@ -365,156 +281,62 @@ if __name__ == "__main__":
 #     except (KeyError, IndexError) as e:
 #         return f"Unexpected API response format: {e}"
 
-# def text_to_speech(text):
+# def announce_identity(person_name, lang):
 #     """
-#     Converts text to speech, saves it as an MP3 file, and plays the MP3.
+#     Synthesizes and plays a voice message announcing a person's identity.
+#     It also saves a record of the announcement to the history file.
+#     The language is now determined by the user's input.
 #     """
-#     print("Generating and playing audio...")
-#     payload = {
-#         "contents": [{"parts": [{"text": text}]}],
-#         "generationConfig": {
-#             "responseModalities": ["AUDIO"],
-#             "speechConfig": {
-#                 "voiceConfig": {
-#                     "prebuiltVoiceConfig": {"voiceName": "Kore"}
-#                 }
-#             }
-#         },
-#         "model": "gemini-2.5-flash-preview-tts"
-#     }
-
-#     try:
-#         response = requests.post(API_URL_AUDIO, json=payload)
-#         response.raise_for_status()
-#         result = response.json()
-        
-#         audio_data_base64 = result['candidates'][0]['content']['parts'][0]['inlineData']['data']
-#         audio_data = io.BytesIO(audio_data_base64.encode('utf-8'))
-
-#         # The API returns raw PCM audio. Pydub is used to convert it into a playable format.
-#         audio_segment = AudioSegment.from_file(audio_data, format="raw", frame_rate=16000, channels=1, sample_width=2)
-        
-#         # Define a temporary file path for the MP3
-#         mp3_file = "translated_audio.mp3"
-        
-#         # Export the audio segment directly to MP3
-#         audio_segment.export(mp3_file, format="mp3")
-#         print(f"Final MP3 file created: {mp3_file}")
-        
-#         # Play the MP3 file using a suitable command-line tool
-#         player = find_audio_player()
-#         if not player:
-#             print("Error: No suitable audio player found (ffplay, aplay, or vlc).")
-#             return
-        
-#         player_args = [player, mp3_file]
-#         if player == 'vlc':
-#             player_args.extend(['--play-and-exit', '--no-video', '--qt-start-minimized'])
-
-#         subprocess.run(player_args, check=True)
-#         os.remove(mp3_file) # Clean up the final MP3 file
-
-#     except requests.exceptions.RequestException as e:
-#         print(f"Error during audio generation: {e}")
-#     except (KeyError, IndexError) as e:
-#         print(f"Unexpected audio API response format: {e}")
-#     except subprocess.CalledProcessError:
-#         print(f"Error: Failed to play audio with '{player}'. Make sure the player is correctly installed.")
-#     """
-#     Converts text to speech, saves it as a WAV file, converts the WAV to an MP3, and plays the MP3.
+#     print(f"Announcing identity: {person_name} in {SUPPORTED_LANGUAGES[lang]}.")
+#     text_to_announce = f"This is {person_name}."
     
-#     Args:
-#         text (str): The text to convert to speech.
+#     # Generate and play the audio.
+#     text_to_speech_gtts(text_to_announce, lang)
     
-#     Returns:
-#         None
-#     """
-#     print("Generating and playing audio...")
-#     payload = {
-#         "contents": [{"parts": [{"text": text}]}],
-#         "generationConfig": {
-#             "responseModalities": ["AUDIO"],
-#             "speechConfig": {
-#                 "voiceConfig": {
-#                     # Change the voice here!
-#                     # You can choose from various voices with distinct characteristics:
-#                     # 'Zephyr' (Bright), 'Puck' (Upbeat), 'Charon' (Informative),
-#                     # 'Kore' (Firm), 'Fenrir' (Excitable), 'Leda' (Youthful),
-#                     # 'Orus' (Firm), 'Aoede' (Breezy), 'Callirrhoe' (Easy-going),
-#                     # 'Autonoe' (Bright), 'Enceladus' (Breathy), 'Iapetus' (Clear),
-#                     # 'Umbriel' (Easy-going), 'Algieba' (Smooth), 'Despina' (Smooth),
-#                     # 'Erinome' (Clear), 'Algenib' (Gravelly), 'Rasalgethi' (Informative),
-#                     # 'Laomedeia' (Upbeat), 'Achernar' (Soft), 'Alnilam' (Firm),
-#                     # 'Schedar' (Even), 'Gacrux' (Mature), 'Pulcherrima' (Forward),
-#                     # 'Achird' (Friendly), 'Zubenelgenubi' (Casual), 'Vindemiatrix' (Gentle),
-#                     # 'Sadachbia' (Lively), 'Sadaltager' (Knowledgeable), 'Sulafat' (Warm).
-#                     "prebuiltVoiceConfig": {"voiceName": "Kore"}
-#                 }
-#             }
-#         },
-#         "model": "gemini-2.5-flash-preview-tts"
-#     }
-
-#     try:
-#         response = requests.post(API_URL_AUDIO, json=payload)
-#         response.raise_for_status()
-#         result = response.json()
-        
-#         audio_data_base64 = result['candidates'][0]['content']['parts'][0]['inlineData']['data']
-#         audio_data = io.BytesIO(audio_data_base64.encode('utf-8'))
-
-#         # The API returns raw PCM audio. Pydub is used to convert it into a playable format.
-#         audio_segment = AudioSegment.from_file(audio_data, format="raw", frame_rate=16000, channels=1, sample_width=2)
-        
-#         # Define a temporary file paths
-#         wav_file = "translated_audio.wav"
-#         mp3_file = "translated_audio.mp3"
-        
-#         # First, export to WAV
-#         audio_segment.export(wav_file, format="wav")
-#         print(f"Intermediate WAV file created: {wav_file}")
-        
-#         # Second, convert the WAV file to MP3
-#         audio_segment.export(mp3_file, format="mp3")
-#         print(f"Final MP3 file created: {mp3_file}")
-        
-#         # Play the MP3 file using a suitable command-line tool
-#         player = find_audio_player()
-#         if not player:
-#             print("Error: No suitable audio player found (ffplay, aplay, or vlc).")
-#             return
-        
-#         # Add flags for VLC to ensure it plays and exits without a GUI
-#         player_args = [player, mp3_file]
-#         if player == 'vlc':
-#             player_args.extend(['--play-and-exit', '--no-video', '--qt-start-minimized'])
-
-#         subprocess.run(player_args, check=True)
-#         os.remove(wav_file) # Clean up the temporary WAV file
-#         os.remove(mp3_file) # Clean up the final MP3 file
-
-#     except requests.exceptions.RequestException as e:
-#         print(f"Error during audio generation: {e}")
-#     except (KeyError, IndexError) as e:
-#         print(f"Unexpected audio API response format: {e}")
-#     except subprocess.CalledProcessError:
-#         print(f"Error: Failed to play audio with '{player}'. Make sure the player is correctly installed.")
+#     # Save the announcement to the history file.
+#     save_to_history_file("Identity Announcement", person_name, text_to_announce, lang, lang)
 
 # def main():
 #     """Main function to handle command-line arguments and run the program."""
 #     if len(sys.argv) < 2:
 #         print("Usage: python translator_cli.py \"<text_to_translate>\"")
-#         print("Example: python translator_cli.py \"Hello, how are you?\"")
+#         print("Or: python translator_cli.py --announce \"<person_name>\"")
 #         sys.exit(1)
 
+#     # Check for the identity announcement flag.
+#     if sys.argv[1] == "--announce":
+#         if len(sys.argv) < 3:
+#             print("Please provide a name to announce.")
+#             sys.exit(1)
+        
+#         person_name = sys.argv[2]
+        
+#         # Prompt the user to select a language for the announcement.
+#         print("\nAvailable Languages for Announcement:")
+#         for i, lang_code in enumerate(SUPPORTED_LANGUAGES):
+#             print(f"    {i+1}. {SUPPORTED_LANGUAGES[lang_code]} ({lang_code})")
+            
+#         try:
+#             target_index = int(input("\nEnter the number for your target language: ")) - 1
+#             if not (0 <= target_index < len(SUPPORTED_LANGUAGES)):
+#                 print("Invalid language number. Please choose from the list.")
+#                 sys.exit(1)
+#             target_lang_code = list(SUPPORTED_LANGUAGES.keys())[target_index]
+            
+#             announce_identity(person_name, target_lang_code)
+#             sys.exit(0)
+            
+#         except ValueError:
+#             print("Invalid input. Please enter a number.")
+#             sys.exit(1)
+
+#     # Handle standard text translation.
 #     input_text = sys.argv[1]
     
-#     # Print the available languages
 #     print("Available Languages:")
-#     for i, lang in enumerate(SUPPORTED_LANGUAGES):
-#         print(f"  {i+1}. {lang['name']} ({lang['code']})")
+#     for i, lang_code in enumerate(SUPPORTED_LANGUAGES):
+#         print(f"    {i+1}. {SUPPORTED_LANGUAGES[lang_code]} ({lang_code})")
 
-#     # Get user choice for source and target languages
 #     try:
 #         source_index = int(input("\nEnter the number for your source language: ")) - 1
 #         target_index = int(input("Enter the number for your target language: ")) - 1
@@ -523,19 +345,23 @@ if __name__ == "__main__":
 #             print("Invalid language numbers. Please choose from the list.")
 #             sys.exit(1)
 
-#         source_lang = SUPPORTED_LANGUAGES[source_index]['code']
-#         target_lang = SUPPORTED_LANGUAGES[target_index]['code']
+#         source_lang_code = list(SUPPORTED_LANGUAGES.keys())[source_index]
+#         target_lang_code = list(SUPPORTED_LANGUAGES.keys())[target_index]
+#         source_lang_name = SUPPORTED_LANGUAGES[source_lang_code]
+#         target_lang_name = SUPPORTED_LANGUAGES[target_lang_code]
 
 #     except ValueError:
 #         print("Invalid input. Please enter a number.")
 #         sys.exit(1)
     
-#     translated_text = translate_text(input_text, source_lang, target_lang)
+#     translated_text = translate_text(input_text, source_lang_code, target_lang_code)
 #     print("Translated Text:", translated_text)
     
-#     # Play the audio only if a valid translation was received
 #     if not translated_text.startswith("Error"):
-#         text_to_speech(translated_text)
+#         # Use gTTS for text-to-speech.
+#         text_to_speech_gtts(translated_text, target_lang_code)
+#         # Save translation to history.
+#         save_to_history_file("Text Translation", input_text, translated_text, source_lang_name, target_lang_name)
 
 # if __name__ == "__main__":
 #     main()

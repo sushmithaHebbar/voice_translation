@@ -170,3 +170,58 @@ Translated Text: नमस्ते! मेरा नाम सुष्मि�
 Languages: English -> Hindi
 Audio File: translated_775f5eaa-831d-475a-b25e-86e625d7b481.mp3
 ------------------------------------------
+[2025-09-11 14:49:14] Type: Text Translation
+Original Text: Hello My name is sushmitha .My rnemy is divyashree and Puvith.
+Translated Text: नमस्ते। मेरा नाम सुष्मिता है। मेरे दुश्मन दिव्याश्री और पुविथ हैं।
+Languages: English -> Hindi
+Audio File: translated_e85780aa-22c8-4d74-b830-55ac056a5f9b.mp3
+------------------------------------------
+[2025-09-11 14:49:55] Type: Text Translation
+Original Text: Hello My name is sushmitha .My rnemy is divyashree and Puvith.
+Translated Text: مرحبًا، اسمي سوشميتا. عدوتي هي ديفياسري وبوفيث.
+Languages: English -> Arabic
+Audio File: translated_4a3bb51c-ed93-434f-9a03-c618a7e71432.mp3
+------------------------------------------
+[2025-09-11 15:17:47] Type: Text Translation
+Original Text: hello my name is sushmitha . i am from mangaluru i like to play badminton or shuttle cock
+Translated Text: ನಮಸ್ತೆ, ನನ್ನ ಹೆಸರು ಸುಷ್ಮಿತಾ. ನಾನು ಮಂಗಳೂರಿನವಳು. ನನಗೆ ಬ್ಯಾಡ್ಮಿಂಟನ್ ಅಥವಾ ಷಟಲ್ ಕಾಕ್ ಆಡುವುದು ಇಷ್ಟ.
+Languages: Hindi -> Kannada
+Audio File: translated_f5359be6-7c06-4416-8f48-8559c1f45306.mp3
+------------------------------------------
+[2025-09-11 15:18:31] Type: Two-Way Communication
+Original Text: hello my name is Sushmita hai
+Translated Text: ಹಲೋ ನನ್ನ ಹೆಸರು ಸುಶ್ಮಿತಾ ಹೈ
+Languages: English -> Kannada
+Audio File: translated_d540dda3-e408-46af-8ed8-39b688a52775.mp3
+------------------------------------------
+[2025-09-11 15:18:57] Type: Two-Way Communication
+Original Text: ನನ್ನ ಹೆಸರು ಸುನೀತಾ ನಾನು ಮಂಗಳೂರು ಮಂಗಳೂರಿನಲ್ಲಿ
+Translated Text: My name is Sunitha I am Mangalore Mangalore Mangalore
+Languages: Kannada -> English
+Audio File: translated_1988c8ce-2a5e-4bcd-82f8-3f1e9e778d56.mp3
+------------------------------------------
+[2025-09-11 15:19:53] Type: Two-Way Communication
+Original Text: ನಿಲ್ಲಿಸಿ
+Translated Text: Stop
+Languages: Kannada -> English
+Audio File: translated_e7354674-3c77-4ada-9bef-fdeb42fd0956.mp3
+------------------------------------------
+[2025-09-17 09:26:50] Type: Text Translation
+Original Text: hello my name is suhsmitha .i am from mangaluru
+Translated Text: The text you provided is in English, not German. I will translate the English text into Russian for you:
+
+**English:** "hello my name is suhsmitha .i am from mangaluru"
+
+**Russian:** "Здравствуйте, меня зовут Сушсмита. Я из Мангалуру."
+Languages: German -> Russian
+Audio File: translated_e5c60356-3a35-4276-b558-1dd702ab29b4.mp3
+------------------------------------------
+[2025-09-17 09:31:28] Type: Text Translation
+Original Text: Arulmigu Bannari Mariamman Temple is situated in Bannari,Sathyamangalam Taluk,Erode district.Godess Bannari amman is a self-manifested deity.The temple is situated 14 kms far away from Sathyamangalam town. Further,the town is located 65 kms from the district headquaters,Erode.The temple attracts devotees from various districts of Tamilnadu and Karnataka state in large number. KUNDAM: Kundam, the annual signature religious festivel of Bannari Mariamman temple, is being celebrated every year during the month of March - April . In Tamil month, Usually this festival falls on Panguni.This Kundam festivel is one of the largest festival,not only in the state of Tamil Nadu but also at country level where millons and millons of devotees commute from different parts of the country to seek the blessings of goddess Bannari Mariamman.
+Translated Text: अरुलमिगु बन्नारी मरियम्मन मंदिर बन्नारी, सत्यमंगलम तालुका, इरोड जिले में स्थित है। देवी बन्नारी अम्मन एक स्वयंभू देवी हैं। यह मंदिर सत्यमंगलम शहर से 14 किलोमीटर दूर स्थित है। इसके अलावा, यह शहर जिला मुख्यालय, इरोड से 65 किलोमीटर दूर स्थित है। यह मंदिर तमिलनाडु और कर्नाटक राज्य के विभिन्न जिलों से बड़ी संख्या में भक्तों को आकर्षित करता है।
+
+**कुण्डम:**
+बन्नारी मरियम्मन मंदिर का वार्षिक प्रतिष्ठित धार्मिक उत्सव 'कुण्डम' हर साल मार्च-अप्रैल के महीने के दौरान मनाया जाता है। तमिल महीने के अनुसार, यह उत्सव आमतौर पर पंगुनी माह में पड़ता है। यह कुण्डम उत्सव न केवल तमिलनाडु राज्य में बल्कि देश के स्तर पर भी सबसे बड़े उत्सवों में से एक है, जहाँ देश के विभिन्न हिस्सों से लाखों-करोड़ों श्रद्धालु देवी बन्नारी मरियम्मन का आशीर्वाद लेने आते हैं।
+Languages: English -> Hindi
+Audio File: translated_a1b8de35-4d23-4935-a1c3-756fed855979.mp3
+------------------------------------------
